@@ -11,16 +11,11 @@ class Pages extends StatelessWidget {
       color: Color(0xff262626),
       child: Column(
         children: [
-          Expanded(child: PageListView()),
-          Material(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16.0),
-              topRight: Radius.circular(16.0),
-            ),
-            color: Colors.white,
-            elevation: 8.0,
-            child: OptionsBar(),
-          ),
+          Expanded(child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PageListView(),
+          )),
+          OptionsBar(),
         ],
       ),
     );

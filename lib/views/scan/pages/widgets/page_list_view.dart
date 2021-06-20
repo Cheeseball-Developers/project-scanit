@@ -11,22 +11,42 @@ class PageListView extends StatelessWidget {
         Provider.of<ImageProcessingModel>(context);
 
     print(imageProcessingModelProvider.images.length);
-    return Swiper(
-      scrollDirection: Axis.horizontal,
-      itemCount: imageProcessingModelProvider.images.length,
-      loop: false,
-      scale: 0.9,
-      viewportFraction: 0.8,
-      itemBuilder: (context, index) {
-        return Center(
-          child: Material(
-            color: Colors.transparent,
-            elevation: 8.0,
-            child:
-                Image.memory(imageProcessingModelProvider.images[index].image),
+    return Column(
+      children: [
+        Expanded(
+          child: Swiper(
+            scrollDirection: Axis.horizontal,
+            itemCount: imageProcessingModelProvider.images.length,
+            loop: false,
+            scale: 0.9,
+            viewportFraction: 0.8,
+            onIndexChanged: (index) =>
+                imageProcessingModelProvider.setIndex(index),
+            itemBuilder: (context, index) {
+              return Center(
+                child: Material(
+                  color: Colors.transparent,
+                  elevation: 8.0,
+                  child: Image.memory(
+                      imageProcessingModelProvider.images[index].image),
+                ),
+              );
+            },
           ),
-        );
-      },
+        ),
+        Material(
+          borderRadius: BorderRadius.circular(512.0),
+          color: Colors.white,
+          elevation: 8.0,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Page ${imageProcessingModelProvider.index+1}',
+              style: TextStyle(fontSize: 12.0),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
