@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_scanit/injection.dart';
 import 'package:project_scanit/models/scan/capture_model.dart';
 import 'package:project_scanit/models/scan/image_processing_model.dart';
 import 'package:project_scanit/views/scan/widgets/bottom_bar/widgets/capture_button.dart';
@@ -6,7 +7,7 @@ import 'package:project_scanit/views/scan/pages/pages.dart';
 import 'package:provider/provider.dart';
 
 class BottomBar extends StatelessWidget {
-  final imageProcessingModel = ImageProcessingModel();
+  final imageProcessingModel = getIt<ImageProcessingModel>();
   @override
   Widget build(BuildContext context) {
     final captureModelProvider = Provider.of<CaptureModel>(context);
